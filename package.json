@@ -1,0 +1,37 @@
+{
+  "name": "sugar",
+  "version": "0.8.1",
+  "description": "Syntactic $ugar for customizing collab hardware",
+  "main": "library.js",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "babel-minify": "^0.5.1",
+    "chai": "^4.1.0",
+    "mocha": "^4.0.1"
+  },
+  "scripts": {
+    "build": "(rm library_min.js 2>/dev/null || true) && ( [ ! -d \"node_modules\" ] && echo 'node_modules missing, run $ npm install to install dependencies') || (npm run util:minify --silent && npm run util:stamp --silent && echo 'Build process complete, see library_min.js')",
+    "util:minify": "minify library.js > library_min.js",
+    "util:buildmessage": "echo '//$ugar v'$(npm run util:version --silent)' (c) '$(npm run util:year --silent)''",
+    "util:stamp": "echo \"$(echo $(npm run util:buildmessage --silent) | cat - library_min.js)\" > library_min.js",
+    "util:version": "echo $npm_package_version",
+    "util:year": "echo $(date +%Y)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valgaze/sugar.git"
+  },
+  "keywords": [],
+  "author": "Victor Algaze",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valgaze/sugar/issues"
+  },
+  "homepage": "https://github.com/valgaze/sugar#readme"
+}

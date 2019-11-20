@@ -1,0 +1,12 @@
+<Extensions>
+  <Version>1.6</Version>
+  <Panel>
+    <PanelId>PeopleCount</PanelId>
+    <Type>Home</Type>
+    <Icon>Language</Icon>
+    <Order>1</Order>
+    <Color>#07C1E4</Color>
+    <Name>Activate People Counting</Name>
+    <ActivityType>ActionButton</ActivityType>
+  </Panel>
+</Extensions>

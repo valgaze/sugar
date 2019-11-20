@@ -1,0 +1,47 @@
+<Extensions>
+  <Version>1.6</Version>
+  <Panel>
+    <PanelId>search</PanelId>
+    <Type>Home</Type>
+    <Icon>Sliders</Icon>
+    <Order>1</Order>
+    <Color>#FFB400</Color>
+    <Name>Change Search Engine</Name>
+    <ActivityType>Custom</ActivityType>
+    <Page>
+      <Name>Select Search Engine</Name>
+      <Row>
+        <Name>Choices</Name>
+        <Widget>
+          <WidgetId>searchengine_widget</WidgetId>
+          <Type>GroupButton</Type>
+          <Options>size=4</Options>
+          <ValueSpace>
+            <Value>
+              <Key>google</Key>
+              <Name>google</Name>
+            </Value>
+            <Value>
+              <Key>bing</Key>
+              <Name>bing</Name>
+            </Value>
+            <Value>
+              <Key>duckduckgo</Key>
+              <Name>duckduckgo</Name>
+            </Value>
+          </ValueSpace>
+        </Widget>
+      </Row>
+      <Options/>
+    </Page>
+  </Panel>
+  <Panel>
+    <PanelId>search_button</PanelId>
+    <Type>Home</Type>
+    <Icon>Lightbulb</Icon>
+    <Order>2</Order>
+    <Color>#02BBCC</Color>
+    <Name>Search</Name>
+    <ActivityType>Custom</ActivityType>
+  </Panel>
+</Extensions>

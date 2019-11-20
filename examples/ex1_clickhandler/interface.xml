@@ -1,0 +1,63 @@
+<Extensions>
+  <Version>1.6</Version>
+  <Panel>
+    <PanelId>widget_id</PanelId>
+    <Type>Home</Type>
+    <Icon>Lightbulb</Icon>
+    <Order>1</Order>
+    <Name>Our Widget</Name>
+    <ActivityType>Custom</ActivityType>
+    <Page>
+      <Name>Pick a site</Name>
+      <Row>
+        <Name>Make a choice</Name>
+        <Widget>
+          <WidgetId>widget_id</WidgetId>
+          <Type>GroupButton</Type>
+          <Options>size=4</Options>
+          <ValueSpace>
+            <Value>
+              <Key>1</Key>
+              <Name>Site A</Name>
+            </Value>
+            <Value>
+              <Key>2</Key>
+              <Name>Site B</Name>
+            </Value>
+            <Value>
+              <Key>3</Key>
+              <Name>Site C</Name>
+            </Value>
+          </ValueSpace>
+        </Widget>
+      </Row>
+      <Options/>
+    </Page>
+  </Panel>
+  <Panel>
+    <PanelId>button1</PanelId>
+    <Type>Home</Type>
+    <Icon>Lightbulb</Icon>
+    <Order>2</Order>
+    <Color>#FFB400</Color>
+    <Name>Show Alert</Name>
+    <ActivityType>Custom</ActivityType>
+  </Panel>
+  <Panel>
+    <PanelId>button3</PanelId>
+    <Type>Home</Type>
+    <Icon>Helpdesk</Icon>
+    <Order>3</Order>
+    <Color>#07C1E4</Color>
+    <Name>User Input</Name>
+    <ActivityType>Custom</ActivityType>
+  </Panel>
+  <Panel>
+    <PanelId>button2</PanelId>
+    <Type>Home</Type>
+    <Icon>Sliders</Icon>
+    <Order>4</Order>
+    <Name>Fetch Device Data</Name>
+    <ActivityType>Custom</ActivityType>
+  </Panel>
+</Extensions>
