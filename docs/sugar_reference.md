@@ -31,6 +31,8 @@ $('button2).on('input', (event) => {
 });
 ```
 
+Note: There is an optional 3rd parameter to customize the prompt: 
+
 # Widget Change Handler
 
 Behavior: Tapping an associated widget will run the associated callback function 
@@ -72,9 +74,8 @@ Note: This aliases xapi.command("UserInterface Message Prompt Display"), you can
 
 ```js
 $().buildPrompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
-    console.log("## Prompt payload!", event); // { id: '1', FeedbackId: '__id0.4388508881271227', OptionId: '3' }
-
-  });
+    console.log("## Prompt payload!", event); // { id: '1', FeedbackId: '__idHow was it?__Pick one below', OptionId: '3' }
+});
 ```
 
 ### $().clearAlert

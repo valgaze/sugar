@@ -21,7 +21,8 @@
     "util:buildmessage": "echo '//$ugar v'$(npm run util:version --silent)' (c) '$(npm run util:year --silent)''",
     "util:stamp": "echo \"$(echo $(npm run util:buildmessage --silent) | cat - library_min.js)\" > library_min.js",
     "util:version": "echo $npm_package_version",
-    "util:year": "echo $(date +%Y)"
+    "util:year": "echo $(date +%Y)",
+    "test": "mocha ./tests/index.js -qc"
   },
   "repository": {
     "type": "git",

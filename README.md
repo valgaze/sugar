@@ -15,24 +15,26 @@ Y8a 8 8 a8P  Y8a.    .a8P   Y8a.    .a88  d8'        `8b   88     `8b
     8 8                                                                                                                    
 ```
 
-Syntactic $ugar for customizing collab hardware (experimental software)
+Syntactic "$ugar" for handling user input & other tasks on collaboration hardware
 
 
 ----------
 
 ## What is $ugar?
 
-In short, $ugar lets you write this:
+$ugar makes it simple to write code that handles user input:
 
 ![copy](./assets/sugar.png)
 
 $ugar isn't a library, it's a bit of so-called [syntactic "$ugar"](https://en.wikipedia.org/wiki/Syntactic_sugar) for the incredible [JSXAPI](https://www.npmjs.com/package/jsxapi) [library](https://github.com/cisco-ce/jsxapi)
 
+It fills a very specific niche to make user interactivty a bit simpler (ie input box, prompts, widgets, etc)
+
 ## How I "install" $ugar?
 
 There are no build/setup steps or dependencies for $ugar-- just copy the [library.js](library.js) (or [library_min.js](library_min.js)) file and paste it in the bottom of your macro
 
-Make sure your macro has this dependency: ```const xapi = require('xapi');```
+Just make sure your macro imports XAPI: ```const xapi = require('xapi');```
 
 ## Examples
 
@@ -69,7 +71,28 @@ $('widget_id').on('widget_action', (event) => {
 });
 ```
 
-Also lots of various utility helpers (ex ```$().alert```, ```$().buildPrompt```, ```$().startTimer```), see more in the [API Reference](./docs/sugar_reference.md)
+
+### Ex. Prompt
+
+Note: for "utility functions" like ```buildPrompt``` no parameter required for the $ugar function
+
+```js
+
+$().buildPrompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
+    console.log("## Prompt payload!", event);
+});
+
+```
+
+```js
+$('widget_id').on('widget_action', (event) => {
+    console.log("#", event);
+    // { id: '1', WidgetId: 'widget_id', Value: '2', Type: 'pressed' }
+    // { id: '1', WidgetId: 'widget_id', Value: '2', Type: 'released' }
+});
+```
+
+Also lots of various utility helpers that alias common tasks: (ex ```$().alert```, ```$().buildPrompt```), see more in the [API Reference](./docs/sugar_reference.md)
 
 ## Useful Resources + References
 
@@ -86,3 +109,17 @@ Also lots of various utility helpers (ex ```$().alert```, ```$().buildPrompt```,
 * https://github.com/cisco-ce/jsxapi
 
 * https://www.youtube.com/watch?v=TSP0e5rXUl8
+
+
+## Tests
+
+Given environment restrictions $ugar is not a commonjs/AMD/RequireJS exported library, see below to run basic tests
+
+```js
+
+npm i  # install testing dependencies
+
+npm test # run tests
+
+```
+

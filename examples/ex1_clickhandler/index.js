@@ -3,7 +3,6 @@
 * Instructions:
 *   - Copy the contents of this file to the Macro editor for your device
 *   - Create the user interface by hand or using the included 'interface.xml' file
-*   - If not already present, copy and paste the $ugar library (library.js) at the bottom of your macro
 *
 */
 

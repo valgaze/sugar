@@ -34,6 +34,8 @@ $('widget_id').on('widget_action', (event) => {
 ```js
 $().buildPrompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
     console.log("## Prompt payload!", event);
-    // { id: '1', FeedbackId: '__id0.4388508881271227', OptionId: '3' }
+    // { id: '1', FeedbackId: ''__idHow was it?__Pick one below'', OptionId: '3', Value: 'Choice C'}
 });
 ```
+
+Note: Prompt choices are indexed starting at 1, [see ```xCommand UserInterface Message Prompt Response``` on page 230 for more info](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/ce93/collaboration-endpoint-software-api-reference-guide-ce93.pdf) and ordinarily do not return a value
