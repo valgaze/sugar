@@ -28,20 +28,25 @@ function wildBootstrap() {
         const libraryPath = path.resolve(__dirname, "../", "library.js");
         let source = sourceCode(libraryPath).then((source) => {
             const { data } = source;
-            eval.call(null, data); // << 
+            eval.call(null, data);
             resolve(data);
         });
     });
 }
-let $$; // Closure for binding
+let $$ = null; // binding reference
+
 describe("$ugar Tests...", function () {
 
   // https://github.com/mochajs/mocha/issues/1187
   beforeEach(function (done) {
-    wildBootstrap().then(function() { 
-      $$ = (param=null) => $(param, fakeJSXAPI); // Bind to mock jsxapi instance
+    if (!$$) {
+      wildBootstrap().then(function() { 
+        $$ = (param=null) => $(param, fakeJSXAPI); // Bind to mock jsxapi instance
+        done();
+      })
+    } else {
       done();
-    })
+    }
   });
 
   // Click handler
