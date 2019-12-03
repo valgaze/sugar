@@ -1,19 +1,30 @@
-// Very janky jsxapi helper
+// Quick'n'dirty jsxapi emulator for click, input, and prompt payloads
 const events = require("events");
-class MockEmitter {
+class PhonyJSXAPI {
   _emitter() {
     return this.fakeEmitter;
   }
 
   constructor() {
     this.fakeEmitter = new events.EventEmitter();
-    this.fakeEmitter.event = this.fakeEmitter;
-    this.fakeEmitter.command = () => {};
+    this.event = this.fakeEmitter;
+    this.command = () => {};
+    this.eventStrings = {
+      click: 'UserInterface Extensions Panel Clicked',
+      widget: 'UserInterface Extensions Widget Action',
+      input: 'UserInterface Message TextInput Response',
+      prompt: 'UserInterface Message Prompt Response',
+    }
+    this.payloads = {}
   }
 
   _buildId(panelId) {
     const id = `__${panelId}`;
     return id;
+  }
+
+  sendWidget(payload) {
+    this.fakeEmitter.emit(this.eventStrings.widget, payload);
   }
 
   sendClick(payload) {
@@ -24,22 +35,23 @@ class MockEmitter {
       payload.PanelId = panelId; // API
     }
 
-    this.fakeEmitter.emit("UserInterface Extensions Panel Clicked", payload);
+    const clickPayload = { id: '1', ...payload}
+    return Promise.resolve(this.fakeEmitter.emit(this.eventStrings.click, clickPayload));
   }
 
-  sendData(payload) {
-    let { panelId } = payload;
-    if (payload.panelId || payload.PanelID || payload.Panelid) {
-      //Mercy check for key name
-      panelId = payload.panelId || payload.PanelID || payload.Panelid;
-      payload.PanelId = panelId; // API
-    }
+  sendInput(buttonName) {
+    const id = this._buildId(buttonName)
+    const output = { id: '1', FeedbackId: id, Text: 'bongo' };
+    // sendClick
+    this.sendClick({panelId: buttonName}).then(() => {
+      // Send Text
+      this.fakeEmitter.emit(this.eventStrings.input, output);
+    })
+  }
 
-    payload.FeedbackId = this._buildId(panelId);
-    this.sendClick({ PanelId: payload.panelId });
-    this.fakeEmitter.emit("UserInterface Message TextInput Response", payload);
-    this.fakeEmitter.emit("BONGO", payload);
+  sendPrompt(payload) {
+    this.fakeEmitter.emit(this.eventStrings.prompt, payload);
   }
 }
 
-module.exports.MockEmitter = MockEmitter;
+module.exports.PhonyJSXAPI = PhonyJSXAPI;

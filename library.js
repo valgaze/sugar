@@ -20,9 +20,6 @@ Ex. Button click
     $().call('contact@webex.cisco.com');
   });
 
-Ex. Trigger a click (force associated listener to run)
-  $('panel_id').on('click');
-
 Ex. Widget Click
   $('widget_id').on('widget_action', (event) => {
     console.log('#', event);
@@ -41,7 +38,7 @@ $().buildPrompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How 
 
 Ex. Take input from user after a button press then make search query (pass on to external service)
 
-$('Button2').on('receive_data', (event) => {
+$('Button2').on('input', (event) => {
     const query = event.Text;
     
     // Check if query is empty
@@ -51,8 +48,10 @@ $('Button2').on('receive_data', (event) => {
 
     const url = `http://www.google.com/search?q=${query}`;
     console.log('Selected URL', url); 
+
     // Launch the URL
     $().launchURL(url);
+    
 }); // Can customize popup too w/ optional config last parameter
 
 
@@ -126,8 +125,8 @@ function $(panelID, customxapi) {
         Value
       });
     },
-    buildPrompt(options, title, text, cb) {
-      const id = `__id${Math.random()}`;
+    buildPrompt(options, title='placeholderTitle', text, cb) {
+      const id = `__id${title}__${text}`;
       const choices = options.map((item, index) => {
         // Limit to 5 choices
         if (index > 4) {
@@ -157,9 +156,12 @@ function $(panelID, customxapi) {
         "UserInterface Message Prompt Response",
         event => {
           if (event.FeedbackId === id) {
+            const valueObj = choices[Number(event.OptionId) - 1]; // Sneaky way to add in a Value parameter,  'Option.5': 'choice e'            
+            const value = valueObj ? Object.values(valueObj)[0] : undefined;
+            event.Value = value;
             if (cb) {
               cb(event);
-              off(); // Discard listener
+              typeof off === 'function' ? off() : null; // Discard listener
             }
           }
         }
@@ -211,7 +213,7 @@ function $(panelID, customxapi) {
           Text: Text ? Text : "Please enter below"
         };
 
-        return $(panelID).on("click", event => {
+        return $(panelID, XAPI_REF).on("click", event => {
           // Show input box
           XAPI_REF.command(
             "UserInterface Message TextInput Display",
@@ -224,7 +226,7 @@ function $(panelID, customxapi) {
             event => {
               if (event.FeedbackId === id) {
                 cb(event);
-                off(); // Discard this listener
+                typeof off === 'function' ? off() : null; // Discard this listener
               }
             }
           );

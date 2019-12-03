@@ -10,7 +10,7 @@ The *really* quick quickstart:
 
 ```js
 $('button1').on('click', (event) => {
-    console.log('#', event); // event: { id: '1', PanelId: 'button2' }
+    console.log('#', event); // event: { id: '1', PanelId: 'button1' }
     $().showAlert('You tapped button 1!');
 });
 ```
