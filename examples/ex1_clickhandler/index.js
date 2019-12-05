@@ -11,7 +11,6 @@ const xapi = require('xapi');
 
 xapi.event.on('UserInterface Extensions Panel Clicked', (event) => {
   // 1) Simple click handler
-
   if (event.PanelId === 'button1') {
     xapi.command("UserInterface Message TextLine Display", {
       Text: 'My big important alert...',
@@ -20,7 +19,6 @@ xapi.event.on('UserInterface Extensions Panel Clicked', (event) => {
   }
 
   // 2) Button click with complex behavior
-
   if (event.PanelId === 'button2') {
        // Async operations that query device itself
        const volume = xapi.status.get('Audio Volume');
@@ -39,7 +37,6 @@ xapi.event.on('UserInterface Extensions Panel Clicked', (event) => {
 });
 
 // 3) Handle text input (click button to launch input)
-
 xapi.event.on('UserInterface Extensions Panel Clicked', (event) => {
   if (event.PanelId === 'button3') {
     // Launch input
@@ -63,8 +60,36 @@ xapi.event.on('UserInterface Extensions Panel Clicked', (event) => {
   }
 });
 
+// 4) Launch Prompt
+xapi.event.on('UserInterface Extensions Panel Clicked', (event) => {
+  if (event.PanelId === 'button4') {
+      const feedbackId = "prompt123";
+      const config = {
+        Title: "Prompt Title",
+        Text: "Prompt Text",
+        FeedbackId: feedbackId,
+        "Option.1": "choice a",
+        "Option.2": "choice b",
+        "Option.3": "choice c",
+        "Option.4": "choice d",
+        "Option.5": "choice e"
+      };
+      xapi.command("UserInterface Message Prompt Display", config);
 
-// 4) Widgets action
+      xapi.event.on("UserInterface Message Prompt Response", event => {
+        if (event.FeedbackId === feedbackId) {          
+          const payload = JSON.stringify(event);
+          const alertMsg = `You picked ${payload}`;
+          xapi.command("UserInterface Message TextLine Display", {
+            Text: alertMsg,
+            Duration: 6
+          });
+        }
+      });
+  }
+});
+
+// 5) Widgets action
 xapi.event.on('UserInterface Extensions Widget Action', (event) => {
   const widget = event.WidgetId;
   if (widget === 'widget_id') {
