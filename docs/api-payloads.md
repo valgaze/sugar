@@ -32,7 +32,7 @@ $('widget_id').on('widget_action', (event) => {
 ## Prompt
 
 ```js
-$().buildPrompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
+$().prompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
     console.log("## Prompt payload!", event);
     // { id: '1', FeedbackId: ''__idHow was it?__Pick one below'', OptionId: '3', Value: 'Choice C'}
 });

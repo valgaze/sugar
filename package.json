@@ -16,9 +16,10 @@
     "mocha": "^4.0.1"
   },
   "scripts": {
+    "start": "npm run build",
     "build": "(rm library_min.js 2>/dev/null || true) && ( [ ! -d \"node_modules\" ] && echo 'node_modules missing, run $ npm install to install dependencies') || (npm run util:minify --silent && npm run util:stamp --silent && echo 'Build process complete, see library_min.js')",
     "util:minify": "minify library.js > library_min.js",
-    "util:buildmessage": "echo '//$ugar v'$(npm run util:version --silent)' (c) '$(npm run util:year --silent)''",
+    "util:buildmessage": "echo '//$ugar v'$(npm run util:version --silent)' ('$(npm run util:year --silent)')'",
     "util:stamp": "echo \"$(echo $(npm run util:buildmessage --silent) | cat - library_min.js)\" > library_min.js",
     "util:version": "echo $npm_package_version",
     "util:year": "echo $(date +%Y)",

@@ -108,7 +108,7 @@ describe("$ugar Tests...", function () {
       const FeedbackId =  `__id${title}__${text}`; // todo: abstract to function
 
       // Prompt
-      $$().buildPrompt(choices, title, text, (event) => {
+      $$().prompt(choices, title, text, (event) => {
         expect(event.FeedbackId).to.equal(FeedbackId);
         done();
       });
@@ -128,7 +128,7 @@ describe("$ugar Tests...", function () {
       const FeedbackId =  `__id${title}__${text}`; // todo: abstract to function
 
       // Prompt
-      $$().buildPrompt(choices, title, text, (event) => {
+      $$().prompt(choices, title, text, (event) => {
         expect(event.Value).to.equal(expectedValue);
         done();
       });
@@ -149,7 +149,7 @@ describe("$ugar Tests...", function () {
 
 
       // Prompt
-      $$().buildPrompt(choices, title, text, (event) => {
+      $$().prompt(choices, title, text, (event) => {
         expect(expectedValue).to.equal(expectedValue);
         done();
       });

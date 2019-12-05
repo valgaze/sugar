@@ -74,11 +74,11 @@ $('widget_id').on('widget_action', (event) => {
 
 ### Ex. Prompt
 
-Note: for "utility functions" like ```buildPrompt``` no parameter required for the $ugar function
+Note: for "utility functions" like ```prompt``` no parameter required for the $ugar function
 
 ```js
 
-$().buildPrompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
+$().prompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
     console.log("## Prompt payload!", event);
 });
 
@@ -92,7 +92,7 @@ $('widget_id').on('widget_action', (event) => {
 });
 ```
 
-Also lots of various utility helpers that alias common tasks: (ex ```$().alert```, ```$().buildPrompt```), see more in the [API Reference](./docs/sugar_reference.md)
+Also lots of various utility helpers that alias common tasks: (ex ```$().alert```, ```$().prompt```), see more in the [API Reference](./docs/sugar_reference.md)
 
 ## Useful Resources + References
 
