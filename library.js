@@ -32,7 +32,7 @@ Ex. Input box from button click (tap button to launch input box, then do somethi
 
 Ex. Prompts (note, no need to put parameter in $ugar function)
 
-$().buildPrompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
+$().prompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
     console.log("## Prompt payload!", event);
   });
 
@@ -82,7 +82,7 @@ function $(panelID, customxapi) {
   const XAPI_REF = customxapi ? customxapi : xapi;
   if (!XAPI_REF) throw new Error("XAPI Library is missing, exiting...");
 
-  // Helpers: $().loud, $().launchURL, $().showTextLine, $().setWidget, $().buildPrompt, $().delay
+  // Helpers: $().loud, $().launchURL, $().showTextLine, $().setWidget, $().prompt, $().delay
   const helpers = {
     getOnce(path) {
       return XAPI_REF.status.get(path);
@@ -125,7 +125,7 @@ function $(panelID, customxapi) {
         Value
       });
     },
-    buildPrompt(options, title='placeholderTitle', text, cb) {
+    prompt(options, title='placeholderTitle', text, cb) {
       const id = `__id${title}__${text}`;
       const choices = options.map((item, index) => {
         // Limit to 5 choices

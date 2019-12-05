@@ -64,7 +64,7 @@ Note: This aliases xapi.command("UserInterface Message TextLine Display"), you c
 $().alert('Alert launched!');
 ```
 
-### $().buildPrompt
+### $().prompt
 
 Behavior: Launches a prompt interface and passes event
 
@@ -73,7 +73,7 @@ Parameters: options {array}, title {string}, text {string}, cb {function}
 Note: This aliases xapi.command("UserInterface Message Prompt Display"), you can pass in an optional config object
 
 ```js
-$().buildPrompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
+$().prompt(['choice a','choice b','choice c','choice d', 'choice e'], 'How was it?', 'Pick one below', (event) => {
     console.log("## Prompt payload!", event); // { id: '1', FeedbackId: '__idHow was it?__Pick one below', OptionId: '3' }
 });
 ```
@@ -119,7 +119,7 @@ $().delay(3000).then(() => {
 
 ### $().getOnce
 
-Behavior: Retrieves
+Behavior: Retrieves various device data a single time (ie on each tap of a button)
 
 Parameters: duration {number, miliseconds}
 
@@ -167,26 +167,4 @@ Note: This aliases xapi.command("UserInterface Extensions Widget SetValue"), you
 
 ```js
 $().setWidget('widget_id', 'newValue'); 
-```
-
-### $().startTimer & $().stopTimer
-
-Behavior: Starts a timer
-
-Parameters: callback {function}
-
-Note: This function on each "tick" (defaults to 1000ms) will provide the callback function with elapsedTime, totalTicks, and intervalId (the intervalId is used to clear the interval)
-
-```js
-$().startTimer((payload) => {
-    const {elapsedTime, totalTicks, intervalId } = payload;
-
-    // Display text
-    $().alert(elapsedTime, {X:600, Y:500});
-
-    // Turn off after 8 cycles
-    if (totalTicks > 8) {
-        $().stopTimer(intervalId);
-    }
-});
 ```

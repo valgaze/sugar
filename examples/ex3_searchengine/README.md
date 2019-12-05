@@ -1,6 +1,6 @@
 ## Description
 
-Tap a button and any input data will be passed onto a search
+Tap a button and any input data will be passed onto a search engine
 
 Open widget and change search engine then tap the button again
 
