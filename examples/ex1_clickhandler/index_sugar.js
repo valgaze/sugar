@@ -49,6 +49,20 @@ $('button3').on('input', (event) => {
     $().alert(`You entered '${userData}'`);
 }, promptConfig);
 
+
+// 4) Launch prompt
+
+$('button4').on('click', (clickEvent) => {
+
+    $().prompt(["choice a", "choice b", "choice c", "choice d", "choice e"], "How was it?", "Pick one below", (event) => {
+        console.log("## Prompt payload", event);
+        const payload = JSON.stringify(event);
+        $().alert(`You picked ${payload}`);
+      }
+    );
+
+});
+
 // 4) Widgets action
 $('widget_id').on('widget_action', (event) => {
     // event: { id: '1', WidgetId: 'widget_id', Value: '2', Type: 'released' }

@@ -60,4 +60,13 @@
     <Name>Fetch Device Data</Name>
     <ActivityType>Custom</ActivityType>
   </Panel>
+  <Panel>
+    <PanelId>button4</PanelId>
+    <Type>Home</Type>
+    <Icon>Help</Icon>
+    <Order>5</Order>
+    <Color>#D541D8</Color>
+    <Name>Launch Prompt</Name>
+    <ActivityType>Custom</ActivityType>
+  </Panel>
 </Extensions>
