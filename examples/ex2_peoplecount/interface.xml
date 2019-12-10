@@ -1,7 +1,7 @@
 <Extensions>
   <Version>1.6</Version>
   <Panel>
-    <PanelId>PeopleCount</PanelId>
+    <PanelId>peoplecount</PanelId>
     <Type>Home</Type>
     <Icon>Language</Icon>
     <Order>1</Order>
