@@ -91,8 +91,10 @@ xapi.event.on('UserInterface Extensions Panel Clicked', (event) => {
 
 // 5) Widgets action
 xapi.event.on('UserInterface Extensions Widget Action', (event) => {
-  const widget = event.WidgetId;
-  if (widget === 'widget_id') {
-    console.log(`Value from widget: ${event.Value}`);
-  }
+    // event: { id: '1', WidgetId: 'widget_id', Value: '2', Type: 'pressed' }
+    // event: { id: '1', WidgetId: 'widget_id', Value: '2', Type: 'released' }
+    const widget = event.WidgetId;
+    if (widget === 'widget_id' && event.Type === 'pressed') {
+      console.log(`Value from widget: ${event.Value}`);
+    }
 });

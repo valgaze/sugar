@@ -65,8 +65,12 @@ $('button4').on('click', (clickEvent) => {
 
 // 4) Widgets action
 $('widget_id').on('widget_action', (event) => {
+    // event: { id: '1', WidgetId: 'widget_id', Value: '2', Type: 'pressed' }
     // event: { id: '1', WidgetId: 'widget_id', Value: '2', Type: 'released' }
-    console.log(`Value from widget: ${event.Value}`);
+    const widget = event.WidgetId;
+    if (widget === 'widget_id' && event.Type === 'pressed') {
+      console.log(`Value from widget: ${event.Value}`);
+    }
 });
  
 
