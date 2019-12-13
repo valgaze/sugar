@@ -7,13 +7,13 @@
 */
 
 const xapi = require('xapi');
-
+let numClicks = 0;
 
 xapi.event.on('UserInterface Extensions Panel Clicked', (event) => {
   // 1) Simple click handler
   if (event.PanelId === 'button1') {
     xapi.command("UserInterface Message TextLine Display", {
-      Text: 'My big important alert...',
+      Text: `My big important alert... ${++numClicks}`,
       Duration: 6,
     });
   }
@@ -96,5 +96,11 @@ xapi.event.on('UserInterface Extensions Widget Action', (event) => {
     const widget = event.WidgetId;
     if (widget === 'widget_id' && event.Type === 'pressed') {
       console.log(`Value from widget: ${event.Value}`);
+
+      const alertMsg = `You pressed ${event.Value}`;
+      xapi.command("UserInterface Message TextLine Display", {
+        Text: alertMsg,
+        Duration: 6
+      });
     }
 });

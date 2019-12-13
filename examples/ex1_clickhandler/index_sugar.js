@@ -9,10 +9,12 @@
 const xapi = require('xapi');
 
 // 1) Simple click handler
+let numClicks = 0;
 $('button1').on('click', (event) => {
-    $().alert('My big important alert...'); // Show an alert
 
+    $().alert(`My big important alert... ${++numClicks}`); // Show an alert
     // $().call('contact_to_call@webex.cisco.com'); // Trigger a call
+
 });
 
 
@@ -67,8 +69,8 @@ $('button4').on('click', (clickEvent) => {
 $('widget_id').on('widget_action', (event) => {
     // event: { id: '1', WidgetId: 'widget_id', Value: '2', Type: 'pressed' }
     // event: { id: '1', WidgetId: 'widget_id', Value: '2', Type: 'released' }
-    const widget = event.WidgetId;
-    if (widget === 'widget_id' && event.Type === 'pressed') {
+    if (event.Type === 'pressed') {
+      $().alert(`You pressed ${event.Value}`)
       console.log(`Value from widget: ${event.Value}`);
     }
 });

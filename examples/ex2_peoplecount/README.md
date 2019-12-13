@@ -4,7 +4,7 @@ Tap a button and display the number of people recognized by the camera in the ro
 
 ## Setup
 
-To try on your device, copy & paste ```index_sugar.js``` with the $ugar library (see the [docs](../docs/running-examples.md)
+To try on your device, copy & paste ```index_sugar.js``` into your macro editor and import the ```interface.xml``` file in the "UI Extensions Editor." For specifics, see the ["Running the Examples" Guide in the docs directory](../../docs/running-the-examples.md)
 
 ## Files
 
