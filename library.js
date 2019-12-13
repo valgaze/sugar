@@ -60,7 +60,7 @@ Ex. Click counter to impress your friends
 let clicks = 0;
 $('Button3').on('click', (event) => {
     clicks++;
-    $().showTextLine(`Clicked ${clicks} times`);
+    $().alert(`Clicked ${clicks} times`);
 });
 
 Ex. Helper functions (each can return a promise)
@@ -69,7 +69,7 @@ $().call('name@cisco.com'); // Initiates a call to an address
 
 $().launchURL('https://www.npmjs.com/package/jsxapi'); // Launch URL
 
-$().showTextline('Hello world!'); // Defaults to 6 seconds then disappears, Accepts config object for positioning, see full API docs
+$().alert('Hello world!'); // Defaults to 6 seconds then disappears, Accepts config object for positioning, see full API docs
 
 $().clearTextLine(); // Clears any textlines ()
 
